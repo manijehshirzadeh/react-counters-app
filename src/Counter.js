@@ -35,6 +35,7 @@ function Counter(props) {
           className="btn btn-danger"
           type="button"
           style={{ marginLeft: "35px" }}
+          onClick={props.onDelete}
         >
           delete
         </button>

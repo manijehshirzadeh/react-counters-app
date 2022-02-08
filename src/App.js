@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Counter from "./Counter";
 import { useState } from "react";
 
-const initialNumber = [1, 0, 0, 3];
+const initialNumber = [1, 2, 3, 4];
 
 function App() {
   const [counters, setCounters] = useState(initialNumber);
@@ -25,11 +25,16 @@ function App() {
     setCounters(newCounters);
   };
 
-  // const handleNavbar = () => {
-  //   const newNavbar = navbar;
-  //   console.log(newNavbar);
-  //   setNavbar(newNavbar + 1);
-  // };
+  const handleDelete = (index) => {
+    console.log(index);
+    const newCounters = [...counters];
+    newCounters.splice(index, 1);
+    console.log(newCounters);
+
+    setCounters(newCounters);
+  };
+
+  const onReset = (index) => {};
 
   return (
     <div className="App">
@@ -41,7 +46,11 @@ function App() {
           </button>
         </div>
         <div className="d-grid gap-2 col-1 mx-auto">
-          <button type="button" className="btn btn-primary">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => onReset(index)}
+          >
             Reset
           </button>
         </div>
@@ -52,6 +61,7 @@ function App() {
             number={counter}
             onAdd={() => handleAdd(index)}
             onDecrease={() => handleDecrease(index)}
+            onDelete={() => handleDelete(index)}
           />
         );
       })}
