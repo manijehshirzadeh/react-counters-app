@@ -21,7 +21,12 @@ function Counter(props) {
         >
           +
         </button>
-        <button className="btn btn-secondary" type="button">
+        <button
+          className="btn btn-secondary"
+          type="button"
+          onClick={props.onDecrease}
+          disabled={props.number === 0}
+        >
           _
         </button>
       </div>

@@ -4,17 +4,32 @@ import "bootstrap/dist/css/bootstrap.css";
 import Counter from "./Counter";
 import { useState } from "react";
 
-const initialNumber = [0, 0, 0, 0];
+const initialNumber = [1, 0, 0, 3];
 
 function App() {
   const [counters, setCounters] = useState(initialNumber);
-  // console.log(counters);
+  const totalCounters = counters.filter((counter) => counter !== 0);
+  console.log(totalCounters);
+
   const handleAdd = (index) => {
     const newCounters = [...counters];
     newCounters[index] = newCounters[index] + 1;
-
     setCounters(newCounters);
   };
+
+  const handleDecrease = (index) => {
+    console.log(index);
+    const newCounters = [...counters];
+    console.log(newCounters);
+    newCounters[index] = newCounters[index] - 1;
+    setCounters(newCounters);
+  };
+
+  // const handleNavbar = () => {
+  //   const newNavbar = navbar;
+  //   console.log(newNavbar);
+  //   setNavbar(newNavbar + 1);
+  // };
 
   return (
     <div className="App">
@@ -22,7 +37,7 @@ function App() {
         <div>
           Navbar
           <button type="button" className="btn btn-secondary">
-            {0}
+            {totalCounters.length}
           </button>
         </div>
         <div className="d-grid gap-2 col-1 mx-auto">
@@ -32,7 +47,13 @@ function App() {
         </div>
       </div>
       {counters.map((counter, index) => {
-        return <Counter number={counter} onAdd={() => handleAdd(index)} />;
+        return (
+          <Counter
+            number={counter}
+            onAdd={() => handleAdd(index)}
+            onDecrease={() => handleDecrease(index)}
+          />
+        );
       })}
     </div>
   );
