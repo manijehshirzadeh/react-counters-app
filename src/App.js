@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Counter from "./Counter";
 import { useState } from "react";
 
-const initialNumber = [1, 2, 3, 4];
+const initialNumber = [0, 0, 0, 0];
 
 function App() {
   const [counters, setCounters] = useState(initialNumber);
@@ -28,13 +28,13 @@ function App() {
   const handleDelete = (index) => {
     console.log(index);
     const newCounters = [...counters];
-    newCounters.splice(index, 1);
-    console.log(newCounters);
 
     setCounters(newCounters);
   };
 
-  const onReset = (index) => {};
+  const handleReset = () => {
+    setCounters([0, 0, 0, 0]);
+  };
 
   return (
     <div className="App">
@@ -49,7 +49,7 @@ function App() {
           <button
             type="button"
             className="btn btn-primary"
-            onClick={() => onReset(index)}
+            onClick={handleReset}
           >
             Reset
           </button>
